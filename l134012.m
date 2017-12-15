@@ -27,7 +27,6 @@
 %   imwrite(Eyes,filename1);
 %  end
 
-
 data=zeros(300,2016);
 labels=zeros(300,1);
 myPathc= 'Training Data/ExtractedFeature(Eyes)/closed';
@@ -61,7 +60,6 @@ for k = 1:100
     end
 end
 
-
 for k = 101:200
     filename2 = [b(k-100).name];
     filename2 = strcat(myPatho,'/',filename2);
@@ -84,8 +82,6 @@ for k = 201:300
     end
 end
 
-
-
 for i= 1 :100
     labels(i,1)=0;
 end
@@ -95,7 +91,6 @@ end
 for y= 201 :300
     labels(y,1)=2;
 end
-
 
 testdata = zeros(500,2016);
 
@@ -124,14 +119,11 @@ testdata = zeros(500,2016);
      tfeatures = extractHOGFeatures(d);
      testdata(var , :) = tfeatures;
  end
-
- 
  
 Mdl = fitcknn(data,labels,'NumNeighbors',5,'Standardize',1);
 % Mdl.ClassNames
 % Mdl.Prior
 outlabels = predict(Mdl,testdata);
-
 
 blinks=zeros(500,1);
 blinks(1,1)=outlabels(1,1);
@@ -151,14 +143,11 @@ for i=1:t.NumberOfFrames-1
     if blinks(i,1)== blinker(1,count)
         count = count + 1;
     end
-    
-        
+          
     if count == 6
         count = 1;
         total = total + 1;
-    end
-        
-        
+    end       
 end
 
 
